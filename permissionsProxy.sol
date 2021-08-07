@@ -23,9 +23,6 @@ contract Permissions_Proxy is Multi_Sig_Storage {
         owners = _owners;
         votesNeeded = _votesNeeded;
     }
-    
-        //Double mapping for owner transaction approvals 
-    mapping(address => mapping(uint => bool)) hasVoted;
         
         //Modifier to set owner permissions
     modifier onlyOwners(){
@@ -40,33 +37,7 @@ contract Permissions_Proxy is Multi_Sig_Storage {
        require(owner == true);
         _;
     }
-   
-           //Struct to hold transaction information, total yes votes, and who has voted for each transaction
-    struct Transaction {
-        uint transactionID;
-        address submitted_by;
-        address payable recipient;
-        uint amount;
-        uint total_approval_votes;
-        bool sent;
-    }
-   
-         //Empty array to hold transfers that have been proposed by owners
-    Transaction[] private transactionRequests;
     
-        //Mapping that allows us to call transactions by their ID
-    mapping (uint => Transaction) private transactions;
-        
-        //A variable that will increment and  be assigned to transactions as they are submitted
-    uint private TransactionID;
-        
-        //Empty array to hold transfer IDs for each transfer
-    uint[] private transactionIdList;
-        
-        //Balance mapping
-    mapping(address => uint) balance;
-
-
     //FALLBACK FUNCTION
     //Is triggered when a function is called that does not exist in proxy contract
     //This is a function that will reroute any function calls that do not match any of the function names in our proxy contract
