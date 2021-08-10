@@ -1,6 +1,6 @@
 pragma solidity 0.5.16;
 
-import "./multiSigStorage_v03.sol";
+import "./multiSigStorage_v3.sol";
 
 contract Multi_Sig_Proxy is Multi_Sig_Storage {
 
